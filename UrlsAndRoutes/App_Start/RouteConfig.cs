@@ -12,6 +12,8 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.RouteExistingFiles = true;
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             //routes.MapRoute(
@@ -29,14 +31,23 @@ namespace UrlsAndRoutes
             //    },
             //    new[] { "UrlsAndRoutes.AdditionalControllers" });
 
-            Route myRoute = routes.MapRoute("MyRoute", "{controller}/{Action}/{id}/{*catchall}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new {  
-                        customConstraint = new UserAgentConstraint("Chrome")
-                    }, 
+            //Route myRoute = routes.MapRoute("MyRoute", "{controller}/{Action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new {  
+            //            customConstraint = new UserAgentConstraint("Chrome")
+            //        }, 
+            //    new[] { "UrlsAndRoutes.AdditionalControllers" });
+
+            //myRoute.DataTokens["UseNamespaceFallback"] = false;
+
+            routes.MapRoute("ChromeRoute", "{*catchall}",
+                new { controller = "Home", action = "Index" },
+                new { customConstraint = new UserAgentConstraint("Chrome") },
                 new[] { "UrlsAndRoutes.AdditionalControllers" });
 
-            myRoute.DataTokens["UseNamespaceFallback"] = false;
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "UrlsAndRoutes.Controllers" });
         }
     }
 }
