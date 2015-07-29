@@ -12,12 +12,22 @@
 <body>
     <div>The controller is: @ViewBag.Controller</div>
     <div>The action is: @ViewBag.Action</div>
+
+    <div>This is a URL:
+        @Url.Action("Index", "Home", new { id = "myId"})
+    </div>
+
     <div>
-        @Html.ActionLink("This in an outgoing URL", "CustomVariable",
-        new { id = "Hello" })
+        @*@Html.ActionLink("This in an outgoing URL", "Index", "Home",
+        "https", "myserver.mydomain", "myFragmentName", 
+        new { id = "myId"}, 
+        new { id = "myAnchorId", @class="myCSSClass"})*@
     </div>
     <div>
         @Html.ActionLink("This targets another controller", "CustomVariable", "Admin")
+    </div>
+    <div>
+        @Html.RouteLink("Click me", "MyOtherRoute", "Index", "Customer")
     </div>
 </body>
 </html>
