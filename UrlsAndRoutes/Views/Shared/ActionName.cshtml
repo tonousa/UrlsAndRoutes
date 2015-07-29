@@ -12,5 +12,12 @@
 <body>
     <div>The controller is: @ViewBag.Controller</div>
     <div>The action is: @ViewBag.Action</div>
+    <div>
+        @Html.ActionLink("This in an outgoing URL", "CustomVariable",
+        new { id = "Hello" })
+    </div>
+    <div>
+        @Html.ActionLink("This targets another controller", "CustomVariable", "Admin")
+    </div>
 </body>
 </html>
