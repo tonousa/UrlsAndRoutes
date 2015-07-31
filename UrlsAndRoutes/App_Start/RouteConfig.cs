@@ -58,6 +58,10 @@ namespace UrlsAndRoutes
             //routes.MapRoute("MyRoute", "{controller}/{action}/{id}",
             //    new { controller="Home", action="Index", id=UrlParameter.Optional});
 
+            routes.Add(new LegacyRoute(
+                "~/articles/Windows_3.1_Overview.html",
+                "~/old/.Net_1.0_Class_Library"));
+
             routes.MapRoute("MyRoute", "{controller}/{action}");
             routes.MapRoute("MyOtherRoute", "App/{action}", new { controller = "Home" });
         }
